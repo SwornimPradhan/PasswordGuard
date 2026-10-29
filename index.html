@@ -1,0 +1,1214 @@
+C:\Users\sworn\OneDrive\Desktop\PasswordGuard\index.html<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PasswordGuard | Password Security</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #0b1120;
+            color: #f1f5f9;
+            line-height: 1.6;
+        }
+        
+        header {
+            padding: 22px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #263247;
+        }
+        
+        .logo {
+            color: #5eead4;
+            font-size: 23px;
+            font-weight: bold;
+        }
+        
+        header a {
+            color: #cbd5e1;
+            text-decoration: none;
+        }
+        
+        main {
+            max-width: 1000px;
+            margin: auto;
+            padding: 65px 24px;
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 35px 0 55px;
+        }
+        
+        .tag {
+            color: #5eead4;
+            letter-spacing: 2px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        h1 {
+            font-size: clamp(36px, 6vw, 58px);
+            line-height: 1.1;
+            margin: 18px 0;
+        }
+        
+        h1 span {
+            color: #5eead4;
+        }
+        
+        .intro {
+            color: #a8b4c7;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .notice {
+            margin: 25px auto 0;
+            max-width: 600px;
+            color: #a8b4c7;
+            font-size: 13px;
+        }
+        
+        .section-title {
+            margin: 30px 0 20px;
+        }
+        
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+        }
+        
+        .card {
+            background: #131e30;
+            border: 1px solid #29374c;
+            padding: 24px;
+            border-radius: 14px;
+        }
+        
+        .card .icon {
+            font-size: 28px;
+        }
+        
+        .card h3 {
+            margin-bottom: 8px;
+        }
+        
+        .card p {
+            color: #a8b4c7;
+            font-size: 14px;
+        }
+        
+        .bottom {
+            margin-top: 35px;
+            padding: 25px;
+            background: #102a30;
+            border: 1px solid #24504e;
+            border-radius: 14px;
+        }
+        
+        .bottom h2 {
+            color: #5eead4;
+        }
+        
+        footer {
+            text-align: center;
+            color: #8492a8;
+            border-top: 1px solid #263247;
+            padding: 25px;
+            font-size: 13px;
+        }
+        
+        a:focus-visible {
+            outline: 2px solid #5eead4;
+            outline-offset: 4px;
+        }
+        
+        .quiz {
+            margin-top: 35px;
+            padding: 28px;
+            border-radius: 14px;
+            border: 1px solid #29374c;
+            background: #131e30;
+        }
+        
+        .quiz h2 {
+            color: #5eead4;
+        }
+        
+        .quiz-question {
+            margin: 22px 0;
+        }
+        
+        .quiz-question label {
+            display: block;
+            margin: 10px 0;
+            cursor: pointer;
+            color: #cbd5e1;
+        }
+        
+        .quiz input[type="radio"] {
+            margin-right: 8px;
+            accent-color: #5eead4;
+        }
+        
+        .quiz button {
+            background: #5eead4;
+            color: #0b1120;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 20px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .quiz button:hover {
+            background: #99f6e4;
+        }
+        
+        #quiz-result {
+            margin-top: 18px;
+            color: #5eead4;
+            font-weight: bold;
+        }
+        
+        #quiz-feedback {
+            color: #cbd5e1;
+            font-weight: normal;
+        }
+        
+        .quiz button:focus-visible {
+            outline: 2px solid white;
+            outline-offset: 3px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">🛡 PasswordGuard</div>
+        <a href="#tips">
+            <section id="security-tips">
+
+                <nav class="main-nav" aria-label="Main navigation">
+                    <a href="#home">Home</a>
+                    <a href="#security-tips">Security Tips</a>
+                    <a href="#strength-checker">Password Checker</a>
+                    <a href="#resources">Resources</a>
+                    <a href="phishguard.html">Phishing Simulator</a>
+                </nav>
+
+    </header>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="tag">YOUR ONLINE SAFETY STARTS HERE</div>
+
+            <h1>Protect your accounts.<br>
+                <span>Protect yourself.</span>
+            </h1>
+
+            <p class="intro">
+                Learn how to create stronger passwords, protect your accounts, and make smarter decisions about online security.
+            </p>
+
+            <p class="notice">
+                A free educational project created to make cybersecurity easier for everyone to understand.
+            </p>
+        </section>
+
+        <section id="tips">
+            <div class="tag">THE ESSENTIALS</div>
+            <h2 class="section-title">Three habits that improve security</h2>
+
+            <div class="cards">
+                <article class="card">
+                    <div class="icon">🔑</div>
+                    <h3>Use unique passwords</h3>
+                    <p>
+                        Use a different password for every account. Reusing passwords can put multiple accounts at risk if one password is exposed.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <div class="icon">🔐</div>
+                    <h3>Use a password manager</h3>
+                    <p>
+                        A reputable password manager can generate and securely store strong, unique passwords so you don't have to memorize each one.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <div class="icon">🛡️</div>
+                    <h3>Enable MFA</h3>
+                    <p>
+                        Multifactor authentication adds another layer of protection by requiring an additional way to verify your identity.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <section class="bottom">
+            <h2>Think before you trust.</h2>
+            <p>
+                Never share your password or verification codes with someone who asks for them unexpectedly. Be cautious of suspicious messages and login links.
+            </p>
+            <p>
+                <strong>Remember:</strong> Password security is one part of staying safe online. Keep your devices updated and secure your recovery options, too.
+            </p>
+        </section>
+
+        <section>
+            <h2>
+                <section id="resources">
+            </h2>
+            <p>
+                Explore guidance from trusted cybersecurity sources:
+            </p>
+            <p>
+                <a href="password-checker.html" target="_blank" rel="noopener noreferrer">
+                    Try our Password Strength Checker
+                </a>
+            </p>
+            <ul>
+                <li>
+                    <a href="https://www.nist.gov/cybersecurity-and-privacy/how-do-i-create-good-password" target="_blank" rel="noopener noreferrer">
+            NIST: How Do I Create a Good Password?
+          </a>
+                </li>
+                <li>
+                    <a href="https://www.fbi.gov/how-we-can-help-you/online-safety/stay-safe-online-simple-tips-for-adults" target="_blank" rel="noopener noreferrer">
+            FBI: Stay Safe Online
+          </a>
+                </li>
+            </ul>
+            </section>
+    </main>
+
+
+    <!-- Password Strength Checker -->
+    <section class="strength-checker" id="strength-checker">
+        <div class="strength-heading">
+            <span class="tag">INTERACTIVE SECURITY TOOL</span>
+            <h2>Password Strength Checker</h2>
+            <p>
+                Test a password and learn how to make it stronger. Your input stays in this browser.
+            </p>
+        </div>
+
+        <div class="strength-panel">
+            <label for="password-input">Enter a test password</label>
+
+            <input type="password" id="password-input" placeholder="Type a password to test..." autocomplete="off" spellcheck="false" />
+
+            <div class="strength-status">
+                <span id="strength-label">Waiting for input</span>
+                <span id="strength-score">0 / 5</span>
+            </div>
+
+            <div class="strength-track" id="strength-track" role="progressbar" aria-label="Password strength" aria-valuemin="0" aria-valuemax="5" aria-valuenow="0">
+                <div id="strength-fill" class="strength-fill"></div>
+            </div>
+
+            <h3>Security checklist</h3>
+
+            <ul class="strength-checklist">
+                <li id="check-length"><span>○</span> At least 12 characters</li>
+                <li id="check-lower"><span>○</span> A lowercase letter</li>
+                <li id="check-upper"><span>○</span> An uppercase letter</li>
+                <li id="check-number"><span>○</span> A number</li>
+                <li id="check-symbol"><span>○</span> A special character</li>
+            </ul>
+
+            <p id="strength-tip" class="strength-tip" aria-live="polite">
+                Start typing to check your password.
+            </p>
+
+            <p class="strength-warning">
+                For privacy, test a sample password—not a password you currently use.
+            </p>
+        </div>
+    </section>
+    <!-- End Password Strength Checker -->
+
+    <section class="quiz" id="password-quiz">
+        <div class="tag">TEST YOUR KNOWLEDGE</div>
+        <h2>Password Security Quiz</h2>
+        <p>Answer these three questions to test your security knowledge.</p>
+
+        <form id="quiz-form">
+            <div class="quiz-question">
+                <p><strong>1. What is the safest password habit?</strong></p>
+                <label><input type="radio" name="q1" value="a" required>
+            Use the same password everywhere</label>
+                <label><input type="radio" name="q1" value="b">
+            Use a unique password for every account</label>
+                <label><input type="radio" name="q1" value="c">
+            Share passwords with trusted friends</label>
+            </div>
+
+            <div class="quiz-question">
+                <p><strong>2. What does MFA add to account security?</strong></p>
+                <label><input type="radio" name="q2" value="a" required>
+            A second layer of identity verification</label>
+                <label><input type="radio" name="q2" value="b">
+            A shorter password</label>
+                <label><input type="radio" name="q2" value="c">
+            An automatic public profile</label>
+            </div>
+
+            <div class="quiz-question">
+                <p><strong>3. What should you do with an unexpected
+          message asking for your password?</strong></p>
+                <label><input type="radio" name="q3" value="a" required>
+            Reply with your password</label>
+                <label><input type="radio" name="q3" value="b">
+            Click the link immediately</label>
+                <label><input type="radio" name="q3" value="c">
+            Don't share it; verify the request safely</label>
+            </div>
+
+            <button type="submit">Check my answers</button>
+            <button type="reset">Try again</button>
+        </form>
+
+        <div id="quiz-result" role="status" aria-live="polite"></div>
+        <div id="quiz-feedback"></div>
+    </section>
+
+    <footer>
+        PasswordGuard | A beginner cybersecurity passion project
+        
+<!-- Phishing Simulator Promotion -->
+<section class="phish-promo" id="phishing-simulator">
+  <div class="phish-promo-content">
+    <span class="tag">HANDS-ON CYBERSECURITY TRAINING</span>
+
+    <h2>Think You Can Spot a Phish?</h2>
+
+    <p>
+      Step into the analyst's seat. Investigate suspicious emails,
+      uncover red flags, and test your ability to distinguish phishing
+      attempts from legitimate messages.
+    </p>
+
+    <div class="phish-features">
+      <span>◈ Realistic email scenarios</span>
+      <span>◈ Instant explanations</span>
+      <span>◈ Score and track your progress</span>
+    </div>
+
+    <a class="phish-launch" href="phishguard.html">
+      Launch Phishing Simulator <span aria-hidden="true">→</span>
+    </a>
+
+    <p class="phish-note">
+      Safe training environment · Fictional sample emails
+    </p>
+  </div>
+
+  <div class="phish-visual" aria-hidden="true">
+    <div class="phish-orbit orbit-one"></div>
+    <div class="phish-orbit orbit-two"></div>
+    <div class="phish-shield">⌑</div>
+    <div class="phish-scanline"></div>
+    <span class="visual-label">THREAT DETECTION</span>
+    <span class="visual-status"><span></span> TRAINING MODE ACTIVE</span>
+  </div>
+</section>
+<!-- End Phishing Simulator Promotion -->
+
+    </footer>
+
+
+    <script>
+        const quizForm = document.getElementById("quiz-form");
+
+        quizForm.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const answers = {
+                q1: "b",
+                q2: "a",
+                q3: "c"
+            };
+
+            const explanations = {
+                q1: "Unique passwords help protect your other accounts if one password is exposed.",
+                q2: "MFA adds another way to verify your identity.",
+                q3: "Never share your password in response to an unexpected request. Verify it safely."
+            };
+
+            let score = 0;
+            const feedback = [];
+
+            for (const question in answers) {
+                const selected = quizForm.querySelector(
+                    'input[name="' + question + '"]:checked'
+                );
+
+                if (!selected) {
+                    document.getElementById("quiz-result").textContent =
+                        "Please answer all three questions.";
+                    document.getElementById("quiz-feedback").textContent = "";
+                    return;
+                }
+
+                if (selected.value === answers[question]) {
+                    score++;
+                    feedback.push(
+                        "Question " + question.slice(1) + ": Correct! " +
+                        explanations[question]
+                    );
+                } else {
+                    feedback.push(
+                        "Question " + question.slice(1) + ": Review this. " +
+                        explanations[question]
+                    );
+                }
+            }
+
+            document.getElementById("quiz-result").textContent =
+                "Your score: " + score + " / 3";
+
+            document.getElementById("quiz-feedback").textContent =
+                feedback.join("\n\n");
+        });
+
+        quizForm.addEventListener("reset", function() {
+            document.getElementById("quiz-result").textContent = "";
+            document.getElementById("quiz-feedback").textContent = "";
+        });
+    </script>
+
+
+    <style>
+        /* ===== PasswordGuard Neon Cyber-Tech Upgrade ===== */
+        /* Color palette and page background */
+        
+         :root {
+            --neon-cyan: #67e8f9;
+            --neon-teal: #5eead4;
+            --neon-blue: #38bdf8;
+            --dark-bg: #070b16;
+            --panel-bg: rgba(19, 30, 48, 0.78);
+            --soft-border: rgba(94, 234, 212, 0.20);
+        }
+        /* Smooth scrolling and consistent sizing */
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        /* Deep navy background with subtle neon light */
+        
+        body {
+            background: radial-gradient( ellipse at 15% 10%, rgba(8, 145, 178, 0.15), transparent 42%), radial-gradient( ellipse at 85% 45%, rgba(13, 148, 136, 0.10), transparent 38%), var(--dark-bg);
+            color: #e2e8f0;
+        }
+        /* Header glow and clean separation */
+        
+        header {
+            border-bottom: 1px solid var(--soft-border);
+            background: rgba(7, 11, 22, 0.82);
+            backdrop-filter: blur(14px);
+        }
+        /* Neon accent labels */
+        
+        .tag {
+            color: var(--neon-teal);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        /* Hero headline */
+        
+        h1 {
+            text-shadow: 0 0 28px rgba(94, 234, 212, 0.16);
+        }
+        
+        h2 {
+            color: var(--neon-cyan);
+        }
+        /* Links */
+        
+        a {
+            color: var(--neon-cyan);
+            text-decoration-color: rgba(103, 232, 249, 0.35);
+            text-underline-offset: 4px;
+            transition: color 0.2s ease, text-shadow 0.2s ease;
+        }
+        
+        a:hover {
+            color: #ffffff;
+            text-shadow: 0 0 12px rgba(103, 232, 249, 0.65);
+        }
+        /* Feature cards: translucent panels and soft borders */
+        
+        .card,
+        .cards>*,
+        .quiz,
+        #password-quiz {
+            background: var(--panel-bg);
+            border: 1px solid var(--soft-border);
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.16);
+            backdrop-filter: blur(10px);
+        }
+        /* Interactive card glow */
+        
+        .card,
+        .cards>* {
+            transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+        }
+        
+        .card:hover,
+        .cards>*:hover {
+            transform: translateY(-5px);
+            border-color: rgba(94, 234, 212, 0.65);
+            box-shadow: 0 12px 34px rgba(0, 0, 0, 0.25), 0 0 22px rgba(45, 212, 191, 0.10);
+        }
+        /* Buttons, including quiz controls */
+        
+        button {
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(94, 234, 212, 0.22);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        /* Quiz feedback remains readable */
+        
+        #quiz-result {
+            color: var(--neon-teal);
+            text-shadow: 0 0 12px rgba(94, 234, 212, 0.16);
+        }
+        
+        #quiz-feedback {
+            white-space: pre-line;
+            line-height: 1.8;
+        }
+        /* Footer */
+        
+        footer {
+            border-top: 1px solid var(--soft-border);
+            color: #94a3b8;
+        }
+        /* Gentle entrance animation */
+        
+        @keyframes pg-fade-in {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero,
+        .cards,
+        .card,
+        .quiz,
+        #password-quiz {
+            animation: pg-fade-in 0.7s ease-out both;
+        }
+        /* Respect visitors who prefer less motion */
+        
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+            *,
+            *::before,
+            *::after {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+        /* ===== Animated Neon Background ===== */
+        
+        body {
+            position: relative;
+            isolation: isolate;
+            overflow-x: hidden;
+        }
+        /* Keep the effects behind the website content */
+        
+        body::before,
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: -1;
+        }
+        /* Subtle futuristic grid */
+        
+        body::before {
+            background-image: linear-gradient( rgba(94, 234, 212, 0.045) 1px, transparent 1px), linear-gradient( 90deg, rgba(94, 234, 212, 0.045) 1px, transparent 1px);
+            background-size: 42px 42px;
+            -webkit-mask-image: linear-gradient( to bottom, black, transparent 90%);
+            mask-image: linear-gradient( to bottom, black, transparent 90%);
+            animation: pg-grid-drift 24s linear infinite;
+        }
+        /* Soft moving cyan and teal light */
+        
+        body::after {
+            inset: -25%;
+            background: radial-gradient( circle at 25% 35%, rgba(34, 211, 238, 0.12), transparent 25%), radial-gradient( circle at 75% 60%, rgba(45, 212, 191, 0.11), transparent 28%);
+            filter: blur(28px);
+            animation: pg-light-drift 16s ease-in-out infinite alternate;
+        }
+        
+        @keyframes pg-grid-drift {
+            from {
+                background-position: 0 0, 0 0;
+            }
+            to {
+                background-position: 42px 42px, 42px 42px;
+            }
+        }
+        
+        @keyframes pg-light-drift {
+            from {
+                transform: translate3d(-2%, -1%, 0);
+            }
+            to {
+                transform: translate3d(2%, 2%, 0);
+            }
+        }
+        /* Reduce movement for visitors who prefer it */
+        
+        @media (prefers-reduced-motion: reduce) {
+            body::before,
+            body::after {
+                animation: none !important;
+            }
+        }
+        /* ===== PasswordGuard Strength Checker ===== */
+        
+        .strength-checker {
+            width: min(900px, 92%);
+            margin: 70px auto;
+            animation: pg-fade-in 0.7s ease-out both;
+        }
+        
+        .strength-heading {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+        
+        .strength-heading h2 {
+            font-size: clamp(1.8rem, 4vw, 2.6rem);
+            margin: 12px 0;
+        }
+        
+        .strength-heading p {
+            color: #94a3b8;
+            line-height: 1.7;
+        }
+        
+        .strength-panel {
+            max-width: 650px;
+            margin: 0 auto;
+            padding: 30px;
+            background: rgba(19, 30, 48, 0.84);
+            border: 1px solid rgba(94, 234, 212, 0.25);
+            border-radius: 18px;
+            box-shadow: 0 0 35px rgba(34, 211, 238, 0.07);
+            backdrop-filter: blur(12px);
+        }
+        
+        .strength-panel label {
+            display: block;
+            margin-bottom: 10px;
+            color: #cbd5e1;
+            font-weight: 600;
+        }
+        
+        #password-input {
+            width: 100%;
+            padding: 15px 16px;
+            border-radius: 10px;
+            border: 1px solid rgba(103, 232, 249, 0.3);
+            outline: none;
+            background: #080f1e;
+            color: #e2e8f0;
+            font-size: 1rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        
+        #password-input:focus {
+            border-color: #5eead4;
+            box-shadow: 0 0 18px rgba(94, 234, 212, 0.16);
+        }
+        
+        .strength-status {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            margin-top: 22px;
+            margin-bottom: 10px;
+            color: #cbd5e1;
+            font-weight: 600;
+        }
+        
+        #strength-label {
+            color: #94a3b8;
+        }
+        
+        .strength-track {
+            height: 9px;
+            overflow: hidden;
+            background: #263246;
+            border-radius: 99px;
+        }
+        
+        .strength-fill {
+            width: 0%;
+            height: 100%;
+            border-radius: inherit;
+            background: #64748b;
+            transition: width 0.3s ease, background-color 0.3s ease;
+        }
+        
+        .strength-panel h3 {
+            margin-top: 28px;
+            color: #67e8f9;
+        }
+        
+        .strength-checklist {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            gap: 12px;
+        }
+        
+        .strength-checklist li {
+            color: #94a3b8;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: color 0.2s;
+        }
+        
+        .strength-checklist li span {
+            color: #64748b;
+            font-size: 1.2rem;
+        }
+        
+        .strength-checklist li.passed {
+            color: #5eead4;
+        }
+        
+        .strength-checklist li.passed span {
+            color: #5eead4;
+        }
+        
+        .strength-tip {
+            margin-top: 24px;
+            padding: 15px;
+            background: rgba(34, 211, 238, 0.06);
+            border-left: 3px solid #22d3ee;
+            border-radius: 6px;
+            color: #cbd5e1;
+            line-height: 1.7;
+        }
+        
+        .strength-warning {
+            margin-top: 20px;
+            color: #94a3b8;
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+        
+        @media (max-width: 600px) {
+            .strength-panel {
+                padding: 22px 18px;
+            }
+            .strength-status {
+                font-size: 0.9rem;
+            }
+        }
+        /* ===== PasswordGuard Navigation Hub ===== */
+        
+        .main-nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 14px 18px;
+            background: rgba(7, 11, 22, 0.88);
+            border-bottom: 1px solid rgba(94, 234, 212, 0.2);
+            backdrop-filter: blur(16px);
+        }
+        
+        .main-nav a {
+            display: inline-block;
+            padding: 10px 15px;
+            color: #a5f3fc;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: 1px solid transparent;
+            border-radius: 9px;
+            transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+        }
+        
+        .main-nav a:hover {
+            color: #ffffff;
+            background: rgba(45, 212, 191, 0.1);
+            border-color: rgba(94, 234, 212, 0.45);
+            box-shadow: 0 0 18px rgba(45, 212, 191, 0.12);
+            transform: translateY(-2px);
+        }
+        /* Keep section headings visible below the sticky bar */
+        
+        #home,
+        #security-tips #strength-checker,
+        #password-quiz,
+        #resources {
+            scroll-margin-top: 90px;
+        }
+        
+        @media (max-width: 600px) {
+            .main-nav {
+                gap: 5px;
+                padding: 10px 8px;
+            }
+            .main-nav a {
+                padding: 8px 10px;
+                font-size: 0.8rem;
+            }
+        }
+        
+/* ===== PhishGuard Launch Section ===== */
+
+.phish-promo {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  width: min(1100px, 92%);
+  margin: 65px auto 45px;
+  padding: clamp(25px, 5vw, 55px);
+  display: grid;
+  grid-template-columns: 1.3fr 0.7fr;
+  align-items: center;
+  gap: 35px;
+  border: 1px solid rgba(94, 234, 212, 0.3);
+  border-radius: 22px;
+  background:
+    radial-gradient(
+      circle at 85% 45%,
+      rgba(34, 211, 238, 0.11),
+      transparent 38%
+    ),
+    rgba(12, 22, 39, 0.92);
+  box-shadow: 0 0 40px rgba(34, 211, 238, 0.07);
+}
+
+.phish-promo-content {
+  position: relative;
+  z-index: 1;
+}
+
+.phish-promo h2 {
+  margin: 15px 0;
+  color: #a5f3fc;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  line-height: 1.2;
+}
+
+.phish-promo-content > p:not(.phish-note) {
+  max-width: 580px;
+  color: #b6c4d5;
+  line-height: 1.85;
+}
+
+.phish-features {
+  display: grid;
+  gap: 11px;
+  margin: 23px 0 28px;
+  color: #cbd5e1;
+  font-size: 0.92rem;
+}
+
+.phish-features span::first-letter {
+  color: #5eead4;
+}
+
+.phish-launch {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px;
+  color: #06121d;
+  background: linear-gradient(110deg, #67e8f9, #5eead4);
+  border: 1px solid #a5f3fc;
+  border-radius: 10px;
+  font-weight: 800;
+  text-decoration: none;
+  box-shadow: 0 0 22px rgba(45, 212, 191, 0.15);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.phish-launch:hover {
+  color: #06121d;
+  text-shadow: none;
+  transform: translateY(-3px);
+  box-shadow: 0 0 30px rgba(45, 212, 191, 0.3);
+}
+
+.phish-note {
+  margin-top: 15px;
+  color: #8294a9;
+  font-size: 0.8rem;
+}
+
+/* Futuristic visual on the right */
+.phish-visual {
+  position: relative;
+  min-height: 260px;
+  display: grid;
+  place-items: center;
+}
+
+.phish-shield {
+  position: relative;
+  z-index: 2;
+  width: 112px;
+  height: 130px;
+  display: grid;
+  place-items: center;
+  color: #67e8f9;
+  font-size: 5rem;
+  border: 2px solid rgba(103, 232, 249, 0.7);
+  border-radius: 50% 50% 45% 45%;
+  background: rgba(8, 145, 178, 0.08);
+  box-shadow:
+    0 0 25px rgba(34, 211, 238, 0.2),
+    inset 0 0 25px rgba(34, 211, 238, 0.08);
+  animation: phish-pulse 3s ease-in-out infinite;
+}
+
+.phish-orbit {
+  position: absolute;
+  width: 190px;
+  height: 190px;
+  border: 1px solid rgba(94, 234, 212, 0.25);
+  border-radius: 50%;
+}
+
+.orbit-one {
+  animation: phish-spin 12s linear infinite;
+  border-top-color: #67e8f9;
+}
+
+.orbit-two {
+  width: 235px;
+  height: 235px;
+  border-style: dashed;
+  animation: phish-spin 22s linear infinite reverse;
+}
+
+.visual-label,
+.visual-status {
+  position: absolute;
+  z-index: 3;
+  font-size: 0.68rem;
+  letter-spacing: 1.5px;
+  color: #a5f3fc;
+}
+
+.visual-label {
+  top: 10px;
+}
+
+.visual-status {
+  bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.visual-status span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #5eead4;
+  box-shadow: 0 0 10px #5eead4;
+}
+
+@keyframes phish-pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 25px rgba(34, 211, 238, 0.2);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 40px rgba(34, 211, 238, 0.35);
+  }
+}
+
+@keyframes phish-spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 720px) {
+  .phish-promo {
+    grid-template-columns: 1fr;
+  }
+
+  .phish-visual {
+    min-height: 250px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .phish-shield,
+  .phish-orbit {
+    animation: none;
+  }
+}
+
+    </style>
+
+    <script>
+        /* ===== PasswordGuard Strength Checker Logic ===== */
+
+        const passwordInput = document.getElementById("password-input");
+        const strengthLabel = document.getElementById("strength-label");
+        const strengthScore = document.getElementById("strength-score");
+        const strengthFill = document.getElementById("strength-fill");
+        const strengthTrack = document.getElementById("strength-track");
+        const strengthTip = document.getElementById("strength-tip");
+
+        if (
+            passwordInput &&
+            strengthLabel &&
+            strengthScore &&
+            strengthFill &&
+            strengthTrack &&
+            strengthTip
+        ) {
+            const checks = [{
+                id: "check-length",
+                test: password => password.length >= 12
+            }, {
+                id: "check-lower",
+                test: password => /[a-z]/.test(password)
+            }, {
+                id: "check-upper",
+                test: password => /[A-Z]/.test(password)
+            }, {
+                id: "check-number",
+                test: password => /[0-9]/.test(password)
+            }, {
+                id: "check-symbol",
+                test: password => /[^A-Za-z0-9]/.test(password)
+            }];
+
+            passwordInput.addEventListener("input", () => {
+                const password = passwordInput.value;
+
+                if (password.length === 0) {
+                    strengthLabel.textContent = "Waiting for input";
+                    strengthLabel.style.color = "#94a3b8";
+                    strengthScore.textContent = "0 / 5";
+                    strengthFill.style.width = "0%";
+                    strengthFill.style.backgroundColor = "#64748b";
+                    strengthTrack.setAttribute("aria-valuenow", "0");
+                    strengthTip.textContent =
+                        "Start typing to check your password.";
+
+                    checks.forEach(check => {
+                        const item = document.getElementById(check.id);
+                        if (item) {
+                            item.classList.remove("passed");
+                            item.querySelector("span").textContent = "○";
+                        }
+                    });
+
+                    return;
+                }
+
+                let score = 0;
+
+                checks.forEach(check => {
+                    const item = document.getElementById(check.id);
+                    const passed = check.test(password);
+
+                    if (passed) score++;
+
+                    if (item) {
+                        item.classList.toggle("passed", passed);
+                        item.querySelector("span").textContent =
+                            passed ? "✓" : "○";
+                    }
+                });
+
+                const levels = [{
+                    label: "Very Weak",
+                    color: "#fb7185",
+                    tip: "Use a much longer password and add variety."
+                }, {
+                    label: "Very Weak",
+                    color: "#fb7185",
+                    tip: "Try a longer, less predictable password."
+                }, {
+                    label: "Weak",
+                    color: "#f97316",
+                    tip: "Add missing character types and more length."
+                }, {
+                    label: "Fair",
+                    color: "#facc15",
+                    tip: "Improve the missing checklist items and avoid predictable patterns."
+                }, {
+                    label: "Strong",
+                    color: "#34d399",
+                    tip: "Good progress! Consider making it longer and unique."
+                }, {
+                    label: "Very Strong",
+                    color: "#5eead4",
+                    tip: "Great checklist result. Keep it unique and never reuse it."
+                }];
+
+                const result = levels[score];
+
+                strengthLabel.textContent = result.label;
+                strengthLabel.style.color = result.color;
+                strengthScore.textContent = score + " / 5";
+                strengthFill.style.width = (score / 5 * 100) + "%";
+                strengthFill.style.backgroundColor = result.color;
+                strengthTrack.setAttribute("aria-valuenow", String(score));
+                strengthTip.textContent = result.tip;
+            });
+        }
+    </script>
+
+</body>
+
+</html>

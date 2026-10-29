@@ -1,0 +1,649 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="An interactive phishing awareness training simulator.">
+  <title>PhishGuard | Phishing Awareness Lab</title>
+
+  <style>
+    :root {
+      --bg: #070b16;
+      --panel: rgba(19, 30, 48, .88);
+      --border: rgba(94, 234, 212, .24);
+      --cyan: #67e8f9;
+      --teal: #5eead4;
+      --muted: #94a3b8;
+      --text: #e2e8f0;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text);
+      font-family: system-ui, -apple-system, Segoe UI, sans-serif;
+      background:
+        radial-gradient(ellipse at 15% 10%, rgba(8,145,178,.16), transparent 42%),
+        radial-gradient(ellipse at 85% 60%, rgba(13,148,136,.12), transparent 38%),
+        var(--bg);
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(94,234,212,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(94,234,212,.035) 1px, transparent 1px);
+      background-size: 42px 42px;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      padding: 18px 7%;
+      background: rgba(7,11,22,.9);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(14px);
+    }
+
+    .logo {
+      color: var(--teal);
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    header a, .back-link {
+      color: var(--cyan);
+      text-decoration: none;
+    }
+
+    header a:hover, .back-link:hover { color: white; }
+
+    main {
+      width: min(1100px, 92%);
+      margin: 0 auto;
+      padding: 48px 0 70px;
+    }
+
+    .hero { text-align: center; margin-bottom: 36px; }
+
+    .tag {
+      color: var(--teal);
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+
+    h1 {
+      margin: 12px 0;
+      font-size: clamp(2.2rem, 6vw, 4rem);
+      line-height: 1.1;
+      text-shadow: 0 0 30px rgba(94,234,212,.18);
+    }
+
+    h1 span { color: var(--cyan); }
+
+    .hero p {
+      max-width: 650px;
+      margin: 0 auto;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin: 28px 0;
+    }
+
+    .stat, .panel, .email-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.15);
+    }
+
+    .stat { padding: 18px; text-align: center; }
+    .stat strong { display: block; color: var(--cyan); font-size: 1.5rem; }
+    .stat span { color: var(--muted); font-size: .85rem; }
+
+    .workspace {
+      display: grid;
+      grid-template-columns: 290px minmax(0, 1fr);
+      gap: 20px;
+      align-items: start;
+    }
+
+    .panel { padding: 22px; }
+    h2, h3 { margin-top: 0; }
+    h2 { color: var(--cyan); font-size: 1.25rem; }
+    h3 { font-size: 1rem; }
+
+    .muted { color: var(--muted); line-height: 1.7; font-size: .92rem; }
+
+    .email-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .email-choice {
+      width: 100%;
+      padding: 14px;
+      text-align: left;
+      color: var(--text);
+      background: rgba(7,11,22,.65);
+      border: 1px solid rgba(148,163,184,.18);
+      border-radius: 10px;
+      cursor: pointer;
+      transition: .2s ease;
+    }
+
+    .email-choice:hover, .email-choice.active {
+      border-color: var(--teal);
+      background: rgba(45,212,191,.08);
+      box-shadow: 0 0 18px rgba(45,212,191,.08);
+    }
+
+    .email-choice strong { display: block; margin-bottom: 5px; }
+    .email-choice span { color: var(--muted); font-size: .82rem; }
+
+    .email-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .pill {
+      display: inline-block;
+      padding: 5px 9px;
+      color: var(--cyan);
+      border: 1px solid var(--border);
+      border-radius: 99px;
+      font-size: .75rem;
+    }
+
+    .email-meta {
+      padding: 14px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      background: rgba(7,11,22,.55);
+      color: var(--muted);
+      font-size: .9rem;
+      overflow-wrap: anywhere;
+    }
+
+    .email-meta p { margin: 7px 0; }
+    .email-meta strong { color: var(--text); }
+
+    .email-body { line-height: 1.85; overflow-wrap: anywhere; }
+    .fake-link {
+      color: var(--cyan);
+      text-decoration: underline;
+      text-decoration-style: dashed;
+      overflow-wrap: anywhere;
+    }
+
+    .warning-box {
+      padding: 14px;
+      margin: 18px 0;
+      border-left: 3px solid #fbbf24;
+      background: rgba(251,191,36,.06);
+      color: #fde68a;
+      line-height: 1.65;
+      font-size: .9rem;
+    }
+
+    .decision-title { margin-top: 28px; }
+
+    .decisions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    button { font: inherit; }
+
+    .decision {
+      padding: 13px 10px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: rgba(45,212,191,.07);
+      color: var(--text);
+      cursor: pointer;
+      transition: .2s ease;
+    }
+
+    .decision:hover {
+      border-color: var(--teal);
+      transform: translateY(-2px);
+      box-shadow: 0 0 18px rgba(94,234,212,.1);
+    }
+
+    .decision:disabled { cursor: default; opacity: .65; transform: none; }
+
+    .feedback {
+      display: none;
+      margin-top: 18px;
+      padding: 17px;
+      border-radius: 10px;
+      line-height: 1.7;
+      background: rgba(45,212,191,.07);
+      border: 1px solid var(--border);
+    }
+
+    .feedback.show { display: block; }
+    .feedback strong { color: var(--teal); }
+    .feedback ul { padding-left: 20px; }
+
+    .action-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .action {
+      padding: 11px 15px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      background: rgba(34,211,238,.1);
+      color: var(--cyan);
+      cursor: pointer;
+    }
+
+    .action:hover { background: rgba(34,211,238,.18); }
+
+    .progress-track {
+      height: 7px;
+      margin-top: 10px;
+      background: #263246;
+      border-radius: 99px;
+      overflow: hidden;
+    }
+
+    #progress-fill {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, #22d3ee, #5eead4);
+      transition: width .3s;
+    }
+
+    footer {
+      padding: 25px;
+      text-align: center;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: .85rem;
+    }
+
+    @media (max-width: 760px) {
+      .workspace { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: 1fr; }
+      .stat { padding: 13px; }
+      main { padding-top: 32px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo">◈ PHISHGUARD</div>
+    <a href="index.html">← Back to PasswordGuard</a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="tag">CYBERSECURITY TRAINING LAB</div>
+      <h1>Spot the <span>Phish.</span></h1>
+      <p>
+        Investigate sample emails, look for red flags, and decide whether
+        each message is legitimate or a phishing attempt. Learn to think
+        like a security analyst.
+      </p>
+    </section>
+
+    <section class="stats" aria-label="Your training progress">
+      <div class="stat">
+        <strong id="score">0</strong>
+        <span>Correct decisions</span>
+      </div>
+      <div class="stat">
+        <strong id="completed">0 / 5</strong>
+        <span>Emails investigated</span>
+      </div>
+      <div class="stat">
+        <strong id="accuracy">0%</strong>
+        <span>Accuracy</span>
+      </div>
+    </section>
+
+    <div class="workspace">
+      <aside class="panel">
+        <h2>Investigation inbox</h2>
+        <p class="muted">Choose a sample email to investigate. Complete all five cases to finish the lab.</p>
+
+        <div class="progress-track" aria-label="Investigation progress">
+          <div id="progress-fill"></div>
+        </div>
+
+        <div class="email-list" id="email-list"></div>
+      </aside>
+
+      <section class="panel" aria-labelledby="email-subject">
+        <div class="email-top">
+          <span class="tag">EMAIL ANALYSIS</span>
+          <span class="pill" id="case-number">CASE 01 / 05</span>
+        </div>
+
+        <h2 id="email-subject">Loading sample...</h2>
+
+        <div class="email-meta">
+          <p><strong>From:</strong> <span id="email-sender"></span></p>
+          <p><strong>To:</strong> Training participant</p>
+          <p><strong>Received:</strong> <span id="email-date"></span></p>
+        </div>
+
+        <div class="email-body" id="email-body"></div>
+
+        <div class="warning-box">
+          Training environment: these are fictional examples. Do not visit
+          suspicious links or enter real credentials into unknown websites.
+        </div>
+
+        <h3 class="decision-title">Your assessment: what is this email?</h3>
+        <div class="decisions">
+          <button class="decision" id="choose-phishing">⚠️ Phishing</button>
+          <button class="decision" id="choose-legitimate">✓ Legitimate</button>
+        </div>
+
+        <div class="feedback" id="feedback" aria-live="polite"></div>
+
+        <div class="action-row">
+          <button class="action" id="next-button" hidden>Next investigation →</button>
+          <button class="action" id="restart-button">↻ Restart lab</button>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    PhishGuard · Educational cybersecurity project · All scenarios are simulated.
+  </footer>
+
+  <script>
+    // Fictional training examples. No real links are opened.
+    const cases = [
+      {
+        subject: "Urgent: Your account will be suspended",
+        sender: "Security Team <security@account-alert.example>",
+        date: "Today, 9:14 AM",
+        body: `
+          <p>Hello,</p>
+          <p>We detected unusual activity. Your account will be suspended
+          in 30 minutes unless you verify your identity immediately.</p>
+          <p><span class="fake-link">Verify your account now</span></p>
+          <p>Failure to act immediately will result in permanent account loss.</p>
+          <p>Regards,<br>Account Security Team</p>`,
+        type: "phishing",
+        clues: [
+          "The message creates extreme urgency with a 30-minute deadline.",
+          "The sender uses a generic, unverified address.",
+          "It pressures the recipient to verify their account through a link."
+        ],
+        lesson: "Don't use links in unexpected account-warning emails. Visit the service's official website or app yourself to check your account."
+      },
+      {
+        subject: "Your monthly library newsletter",
+        sender: "Community Library <newsletter@library.example>",
+        date: "Yesterday, 10:00 AM",
+        body: `
+          <p>Hello reader,</p>
+          <p>Our monthly newsletter is available. This edition includes
+          upcoming reading events, new arrivals, and updated opening hours.</p>
+          <p>You can review the event calendar through the library's usual
+          website or visit the front desk for more information.</p>
+          <p>Thank you,<br>Community Library Team</p>`,
+        type: "legitimate",
+        clues: [
+          "The message does not demand urgent action.",
+          "It doesn't ask for passwords, payment, or sensitive information.",
+          "It offers a normal informational update without pressuring the reader."
+        ],
+        lesson: "A calm tone doesn't automatically prove an email is safe. Check whether you recognize the organization and verify the sender if anything feels unusual."
+      },
+      {
+        subject: "You've won a surprise reward!",
+        sender: "Rewards Center <winner@claim-prize.example>",
+        date: "Today, 11:42 AM",
+        body: `
+          <p>Congratulations!</p>
+          <p>You have been randomly selected to receive a valuable reward,
+          even though you may not remember entering a contest.</p>
+          <p><span class="fake-link">Claim your reward now</span></p>
+          <p>Pay a small processing fee and provide your personal details
+          to release the prize. Offer expires soon!</p>`,
+        type: "phishing",
+        clues: [
+          "The prize is unexpected and may be too good to be true.",
+          "The sender requests a processing fee and personal information.",
+          "The short deadline pressures the recipient to act quickly."
+        ],
+        lesson: "Unexpected prizes that require payment or sensitive information are major warning signs. Verify contests independently before responding."
+      },
+      {
+        subject: "Scheduled maintenance notice",
+        sender: "IT Help Desk <helpdesk@company.example>",
+        date: "Monday, 2:30 PM",
+        body: `
+          <p>Hello team,</p>
+          <p>Routine maintenance is scheduled for Saturday from 8:00 PM
+          to 9:00 PM. Some internal services may be temporarily unavailable.</p>
+          <p>No action is required. If you have questions, contact the IT
+          help desk using the contact information in your employee directory.</p>
+          <p>Thank you,<br>IT Help Desk</p>`,
+        type: "legitimate",
+        clues: [
+          "The email provides a clear maintenance window.",
+          "It says no action is required and doesn't request credentials.",
+          "It directs employees to independently verified contact information."
+        ],
+        lesson: "Routine notices with no pressure or request for sensitive data may be legitimate, but sender names can be spoofed. Confirm unexpected messages through a trusted channel."
+      },
+      {
+        subject: "Action required: Invoice payment failed",
+        sender: "Billing Department <billing-review@payment-check.example>",
+        date: "Today, 8:06 AM",
+        body: `
+          <p>Dear customer,</p>
+          <p>Your latest payment could not be processed. To prevent an
+          interruption, open the attached invoice and enter your payment
+          details to restore your account.</p>
+          <p><span class="fake-link">Review payment details</span></p>
+          <p>If you do not respond today, your account may be restricted.</p>`,
+        type: "phishing",
+        clues: [
+          "The sender domain is generic and should be verified independently.",
+          "The message requests payment details through an unexpected prompt.",
+          "It combines a threat of account restriction with urgency."
+        ],
+        lesson: "Don't open unexpected attachments or submit payment details from an email prompt. Check billing directly through the official service."
+      }
+    ];
+
+    let current = 0;
+    let score = 0;
+    let answered = new Array(cases.length).fill(null);
+
+    const $ = id => document.getElementById(id);
+
+    function renderInbox() {
+      $("email-list").innerHTML = "";
+
+      cases.forEach((item, index) => {
+        const button = document.createElement("button");
+        button.className = "email-choice" + (index === current ? " active" : "");
+        button.type = "button";
+
+        const title = document.createElement("strong");
+        title.textContent = (answered[index] !== null ? "✓ " : "✉ ") + item.subject;
+
+        const subtitle = document.createElement("span");
+        subtitle.textContent = "Case " + String(index + 1).padStart(2, "0") +
+          (answered[index] !== null ? " · Investigated" : " · Unreviewed");
+
+        button.append(title, subtitle);
+        button.addEventListener("click", () => {
+          current = index;
+          renderCase();
+        });
+
+        $("email-list").appendChild(button);
+      });
+    }
+
+    function updateStats() {
+      const completed = answered.filter(value => value !== null).length;
+      score = answered.reduce((total, value, index) => {
+        return total + (value !== null && value === cases[index].type ? 1 : 0);
+      }, 0);
+
+      $("score").textContent = score;
+      $("completed").textContent = completed + " / " + cases.length;
+      $("accuracy").textContent = completed
+        ? Math.round(score / completed * 100) + "%"
+        : "0%";
+      $("progress-fill").style.width = (completed / cases.length * 100) + "%";
+    }
+
+    function renderCase() {
+      const item = cases[current];
+
+      $("case-number").textContent =
+        "CASE " + String(current + 1).padStart(2, "0") +
+        " / " + String(cases.length).padStart(2, "0");
+
+      $("email-subject").textContent = item.subject;
+      $("email-sender").textContent = item.sender;
+      $("email-date").textContent = item.date;
+      $("email-body").innerHTML = item.body;
+
+      const feedback = $("feedback");
+      feedback.classList.remove("show");
+      feedback.innerHTML = "";
+
+      const alreadyAnswered = answered[current] !== null;
+      $("choose-phishing").disabled = alreadyAnswered;
+      $("choose-legitimate").disabled = alreadyAnswered;
+      $("next-button").hidden = !alreadyAnswered || current === cases.length - 1;
+
+      if (alreadyAnswered) showFeedback(answered[current]);
+
+      renderInbox();
+      updateStats();
+    }
+
+    function showFeedback(choice) {
+      const item = cases[current];
+      const correct = choice === item.type;
+      const feedback = $("feedback");
+
+      feedback.innerHTML = "";
+
+      const heading = document.createElement("strong");
+      heading.textContent = correct ? "✓ Correct assessment" : "✕ Not quite";
+      feedback.appendChild(heading);
+
+      const result = document.createElement("p");
+      result.textContent = "This email is " + item.type.toUpperCase() + ".";
+      feedback.appendChild(result);
+
+      const clueTitle = document.createElement("p");
+      clueTitle.textContent = "What to notice:";
+      feedback.appendChild(clueTitle);
+
+      const list = document.createElement("ul");
+      item.clues.forEach(clue => {
+        const li = document.createElement("li");
+        li.textContent = clue;
+        list.appendChild(li);
+      });
+      feedback.appendChild(list);
+
+      const lesson = document.createElement("p");
+      lesson.textContent = "Security lesson: " + item.lesson;
+      feedback.appendChild(lesson);
+
+      feedback.classList.add("show");
+    }
+
+    function answer(choice) {
+      if (answered[current] !== null) return;
+
+      answered[current] = choice;
+      showFeedback(choice);
+      $("choose-phishing").disabled = true;
+      $("choose-legitimate").disabled = true;
+      $("next-button").hidden = current === cases.length - 1;
+
+      renderInbox();
+      updateStats();
+
+      if (answered.every(value => value !== null)) {
+        const finish = document.createElement("p");
+        finish.innerHTML = "<strong>Lab complete!</strong> You scored " +
+          score + " out of " + cases.length +
+          ". Restart the lab to practice again.";
+        $("feedback").appendChild(finish);
+        $("next-button").hidden = true;
+      }
+    }
+
+    $("choose-phishing").addEventListener("click", () => answer("phishing"));
+    $("choose-legitimate").addEventListener("click", () => answer("legitimate"));
+
+    $("next-button").addEventListener("click", () => {
+      if (current < cases.length - 1) {
+        current++;
+        renderCase();
+      }
+    });
+
+    $("restart-button").addEventListener("click", () => {
+      current = 0;
+      score = 0;
+      answered = new Array(cases.length).fill(null);
+      renderCase();
+    });
+
+    renderCase();
+  </script>
+</body>
+</html>
